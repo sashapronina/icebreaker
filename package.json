@@ -1,7 +1,7 @@
 {
   "name": "icebreaker-picker",
   "version": "1.0.0",
-  "description": "Team icebreaker activity picker",
+  "description": "Generate a random icebreaker question for your team. Go beyond small talk.",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
