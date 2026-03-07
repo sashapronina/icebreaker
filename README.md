@@ -1,31 +1,14 @@
-# Icebreaker Picker
+# Icebreaker
 
-A simple team icebreaker activity picker that helps teams choose the right activity based on their goals.
+Generate a random icebreaker question for your team. Go beyond small talk.
 
 ## Features
 
-- **Goal Selection**: Choose from "Feel Closer", "Warm Up", or "Align" goals
-- **Smart Activity Generation**: Randomly selects activities based on your chosen goal
-- **Activity Tracking**: Remembers used activities to avoid repeats (stored in browser localStorage)
-- **Rich Activity Details**: Shows duration, people count, energy level, difficulty, and detailed instructions
-- **Responsive Design**: Works on desktop and mobile devices
-
-## Database
-
-The app includes 10 sample activities:
-- 4 "Feel Closer" activities
-- 4 "Warm Up" activities  
-- 2 "Align" activities
-
-Each activity includes:
-- Goal category
-- Type (around_room, activity, discussion)
-- Duration (5-25 minutes)
-- People count range
-- Energy level (low, medium, high)
-- Difficulty (easy, medium, hard)
-- Comfort level
-- Description and detailed instructions
+- **One-tap generate**: Get a random icebreaker question—no goals or categories to choose
+- **Avoid repeats**: Remembers used prompts so you don’t see the same one twice (stored in browser localStorage)
+- **Simple UI**: One question at a time, with Regenerate and Reset
+- **Responsive**: Works on desktop and mobile
+- **About**: Link to donate to Polar Bears International
 
 ## Setup
 
@@ -39,7 +22,7 @@ npm install
 npm start
 ```
 
-3. Open your browser to `http://localhost:3000`
+3. Open your browser to `http://localhost:3000` (or the port shown in the terminal, e.g. 8082 if you set `PORT=8082`)
 
 ## Building for Production
 
@@ -47,18 +30,11 @@ npm start
 npm run build
 ```
 
-## Technology Stack
+The built files are in the `build/` folder, ready to deploy (e.g. GitHub Pages).
+
+## Tech
 
 - React 18
-- Create React App (build tool)
-- Tailwind CSS (via CDN)
-- Local JSON database
-- Browser localStorage (activity tracking)
-
-## Future Enhancements
-
-- Easy migration to SQLite or Supabase
-- More activity categories
-- User preferences
-- Activity rating system
-- Export/import functionality
+- Create React App
+- Tailwind CSS
+- Local JSON data (60 prompts)
