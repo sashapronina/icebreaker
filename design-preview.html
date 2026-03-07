@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Preview - Icebreaker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .card-shadow {
+            box-shadow: 0 0 16px rgba(0, 0, 0, 0.09);
+        }
+        .generate-btn {
+            background-color: #ABFF2D;
+            color: #111111;
+        }
+    </style>
+</head>
+<body class="bg-white min-h-screen">
+    <!-- Topbar -->
+    <div class="flex items-center justify-between px-8 py-4">
+        <!-- Logo and Title -->
+        <div class="flex items-center space-x-2">
+            <div class="w-5 h-5 bg-gray-400 rounded"></div>
+            <div>
+                <h1 class="text-lg font-bold text-black">Icebreaker</h1>
+                <p class="text-sm text-black">Find a perfer icebreaker for your team workshop.</p>
+            </div>
+        </div>
+        
+        <!-- Stepper -->
+        <div class="flex items-center space-x-2">
+            <div class="w-4 h-4 bg-black rounded-full flex items-center justify-center">
+                <span class="text-white text-xs font-semibold">1</span>
+            </div>
+            <div class="w-6 h-0.5 bg-black"></div>
+            <div class="w-4 h-4 bg-gray-300 rounded-full flex items-center justify-center">
+                <span class="text-gray-700 text-xs font-semibold">2</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex flex-col items-center justify-center px-4 py-16">
+        <div class="w-full max-w-4xl">
+            <!-- Question -->
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-black mb-4">
+                    What do you want to achieve?
+                </h2>
+            </div>
+
+            <!-- Goal Cards -->
+            <div class="grid gap-4 md:grid-cols-3 mb-12">
+                <!-- Feel Closer Card -->
+                <div class="bg-white rounded card-shadow p-4">
+                    <div class="mb-2">
+                        <div class="w-full h-40 bg-gray-200 rounded"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black">Feel closer</h3>
+                </div>
+
+                <!-- Warm Up Card -->
+                <div class="bg-white rounded card-shadow p-4">
+                    <div class="mb-2">
+                        <div class="w-full h-40 bg-gray-200 rounded"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black">Warm up</h3>
+                </div>
+
+                <!-- Align Card -->
+                <div class="bg-white rounded card-shadow p-4">
+                    <div class="mb-2">
+                        <div class="w-full h-40 bg-gray-200 rounded"></div>
+                    </div>
+                    <h3 class="text-lg font-semibold text-black">Align</h3>
+                </div>
+            </div>
+
+            <!-- Generate Button -->
+            <div class="text-center">
+                <button class="generate-btn px-4 py-2 rounded-lg font-semibold flex items-center mx-auto">
+                    Generate
+                    <div class="ml-2 w-6 h-6 bg-black bg-opacity-10 rounded flex items-center justify-center">
+                        <span class="text-xs">↵</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
