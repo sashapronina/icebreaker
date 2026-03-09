@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Button from './Button'
+import SnowstormOverlay from './SnowstormOverlay'
 
 const Landing = ({ onGenerate, animationPhase }) => {
   useEffect(() => {
@@ -13,6 +14,8 @@ const Landing = ({ onGenerate, animationPhase }) => {
   }, [onGenerate])
 
   return (
+    <>
+      <SnowstormOverlay />
     <div
       className="min-h-screen relative px-4 sm:px-6 transition-opacity duration-500"
       style={{
@@ -33,6 +36,7 @@ const Landing = ({ onGenerate, animationPhase }) => {
         <div className="h-9" aria-hidden />
       </div>
     </div>
+    </>
   )
 }
 
