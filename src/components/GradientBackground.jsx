@@ -1,7 +1,8 @@
 import React from 'react'
 
-const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle' }) => {
+const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle', isRegenerating = false }) => {
   const isWarm = isActivityScreen || animationPhase === 'glowAnimation'
+  const shouldPulseWarmGlow = isActivityScreen && isRegenerating
   const translateY = isWarm ? '50px' : '100px'
 
   return (
@@ -19,10 +20,13 @@ const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle' 
           transform: `translate(-50%, calc(50% + ${translateY}))`,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='${isWarm ? '%23FF6D50' : '%23FFFFFF'}' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundBlendMode: 'overlay',
+          opacity: isWarm ? 0.9 : 1,
+          animation: shouldPulseWarmGlow ? 'warm-glow-pulse 1.2s ease-in-out' : undefined,
         }}
       />
       {isActivityScreen && (
         <>
+          {/* Additional warm glows in activity state */}
           <div
             className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full opacity-40 blur-3xl"
             style={{

@@ -70,12 +70,16 @@ function App() {
       setGeneratedActivity(selectedActivity)
       setUsedActivities((prev) => [...prev, selectedActivity.id])
     }, 200)
-    setTimeout(() => setIsRegenerating(false), 600)
+    setTimeout(() => setIsRegenerating(false), 1200)
   }
 
   return (
     <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#FDFCF3' }}>
-      <GradientBackground isActivityScreen={!!generatedActivity} animationPhase={animationPhase} />
+      <GradientBackground
+        isActivityScreen={!!generatedActivity}
+        animationPhase={animationPhase}
+        isRegenerating={isRegenerating}
+      />
       <Topbar showTagline onLogoClick={handleReset} onAboutClick={() => setShowAbout(true)} theme={generatedActivity ? 'warm' : 'cold'} />
 
       {showAbout && (

@@ -24,3 +24,36 @@ code {
 .font-body {
   font-family: 'Hind', sans-serif;
 }
+
+/* Snowstorm overlay */
+@keyframes snowfall {
+  0% {
+    transform: translate(0, -10vh) rotate(25deg);
+  }
+  100% {
+    transform: translate(15vw, 110vh) rotate(25deg);
+  }
+}
+
+@keyframes snowfall-slow {
+  0% {
+    transform: translate(0, -5vh) rotate(25deg);
+  }
+  100% {
+    transform: translate(8vw, 105vh) rotate(25deg);
+  }
+}
+
+/* Warm glow pulse when regenerating */
+@keyframes warm-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  40% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.95;
+  }
+}
