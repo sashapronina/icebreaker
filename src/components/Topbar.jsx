@@ -20,7 +20,7 @@ const Topbar = ({ showTagline = false, onLogoClick, onAboutClick, theme = 'cold'
           onClick={onLogoClick}
         >
           <img
-            src="/logo.png"
+            src={process.env.PUBLIC_URL + '/logo.png'}
             alt="Icebreaker Logo"
             className="w-8 h-8"
             style={{ filter: logoFilter }}
