@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/icebreaker/static/css/main.0701c79f.css",
+    "main.js": "/icebreaker/static/js/main.5c56e718.js",
+    "index.html": "/icebreaker/index.html",
+    "main.0701c79f.css.map": "/icebreaker/static/css/main.0701c79f.css.map",
+    "main.5c56e718.js.map": "/icebreaker/static/js/main.5c56e718.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0701c79f.css",
+    "static/js/main.5c56e718.js"
+  ]
+}
