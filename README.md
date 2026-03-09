@@ -10,27 +10,8 @@ Generate a random icebreaker question for your team. Go beyond small talk.
 - **Responsive**: Works on desktop and mobile
 - **About**: Link to donate to Polar Bears International
 
-## Setup
-
-1. Install dependencies:
-```bash
-npm install
-```
-
-2. Start the development server:
-```bash
-npm start
-```
-
-3. Open your browser to `http://localhost:3000` (or the port shown in the terminal, e.g. 8082 if you set `PORT=8082`)
-
-## Building for Production
-
-```bash
-npm run build
-```
-
-The built files are in the `build/` folder, ready to deploy (e.g. GitHub Pages).
+## How to use
+You can use it in the Github pages or fork it and customize cuestions to your liking. You will see that JSON file has many properties for questions so if you need, you can create a filtering based on the goal of the icebreaker, add descriptions, specify number of people needed etc.
 
 ## Tech
 
