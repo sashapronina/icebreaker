@@ -36,7 +36,10 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
         </h1>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 pb-12 sm:pb-20 md:pb-24 px-4 sm:px-6 w-full max-w-xl mx-auto">
+      <div
+        className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 pb-4 sm:pb-20 md:pb-24 px-4 sm:px-6 w-full max-w-xl mx-auto"
+        style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}
+      >
         <Button
           onClick={onNewActivity}
           variant="primary"

@@ -17,7 +17,7 @@ function generateParticles() {
       coldRotate: 20 + Math.random() * 15,
       warmRotate: -35 + Math.random() * 70,
       coldOpacity: 0.2 + Math.random() * 0.45,
-      warmOpacity: 0.25 + Math.random() * 0.45,
+      warmOpacity: 0.12 + Math.random() * 0.2,
       duration: 8 + Math.random() * 10,
       delay: Math.random() * -16,
       driftX: 7 + Math.random() * 12,
@@ -41,7 +41,7 @@ export default function MorphingParticlesOverlay({ isWarm = false, lowPerfMode =
   const visibleParticles = shouldReduceEffects ? particles.slice(0, MOBILE_PARTICLE_COUNT) : particles
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-30" aria-hidden>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden>
       {visibleParticles.map((p) => (
         <div
           key={p.id}

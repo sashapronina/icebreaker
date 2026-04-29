@@ -2,13 +2,12 @@ import React from 'react'
 
 const EnterKeyIcon = () => (
   <span
-    className="inline-flex items-center justify-center font-medium"
+    className="inline-flex items-center justify-center"
     style={{
-      fontSize: '18px',
-      height: '20px',
-      width: '20px',
-      lineHeight: '20px',
-      transform: 'translateY(2px)',
+      fontSize: '14px',
+      lineHeight: '1',
+      fontWeight: 400,
+      transform: 'translateY(1px)',
     }}
     aria-hidden
   >
@@ -48,12 +47,18 @@ const Button = ({
 
   const secondaryStyle = variant === 'secondary' && primaryColor ? { color: primaryColor } : undefined
   const combinedStyle = { borderRadius: '1000px', ...primaryStyle, ...secondaryStyle }
+  const shortcutBadgeBaseClasses = 'ml-2 inline-flex items-center justify-center self-center rounded'
+  const shortcutBadgeBaseStyle = {
+    width: '24px',
+    height: '24px',
+    borderRadius: '6px',
+  }
 
   const iconClasses = iconPosition === 'left' ? 'mr-2' : 'ml-2'
   const enterHintEl = showEnterHint && variant === 'primary' && !disabled && (
     <span
-      className="ml-2 inline-flex items-center justify-center self-center rounded min-w-[28px] h-8 px-2"
-      style={{ backgroundColor: 'rgba(255,255,255,0.25)', borderRadius: '6px' }}
+      className={shortcutBadgeBaseClasses}
+      style={{ ...shortcutBadgeBaseStyle, backgroundColor: 'rgba(255,255,255,0.25)' }}
       aria-hidden
     >
       <EnterKeyIcon />
@@ -62,10 +67,14 @@ const Button = ({
 
   const shortcutKeyHint = shortcutKey && variant === 'secondary' && !disabled && (
     <span
-      className="ml-2 inline-flex items-center justify-center self-center rounded min-w-[24px] h-6 px-1.5 text-xs font-bold"
+      className={shortcutBadgeBaseClasses}
       style={{
+        ...shortcutBadgeBaseStyle,
         backgroundColor: 'rgba(255, 255, 255, 0.6)',
         color: primaryColor || '#FF6D50',
+        fontSize: '14px',
+        lineHeight: '1',
+        fontWeight: 400,
       }}
       aria-hidden
     >
