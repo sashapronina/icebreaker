@@ -1,7 +1,7 @@
 import React from 'react'
 
 const THEMES = {
-  cold: '#1F9DFF',
+  cold: '#1699FF',
   warm: '#FF6D50',
 }
 

@@ -24,15 +24,15 @@ const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle',
           width: lowPerfMode ? '1400px' : '2400px',
           maxWidth: lowPerfMode ? '120vw' : '165vw',
           height: lowPerfMode ? '560px' : '900px',
-          backgroundColor: isWarm ? 'rgba(255, 109, 80, 0.5)' : 'rgba(31, 157, 255, 0.5)',
+          backgroundColor: isWarm ? 'rgba(255, 109, 80, 0.25)' : 'rgba(83, 180, 255, 0.30)',
           borderRadius: '50%',
-          filter: lowPerfMode ? 'blur(70px)' : 'blur(180px)',
+          filter: 'blur(75px)',
           transform: `translate(-50%, calc(50% + ${translateY}))`,
           backgroundImage: lowPerfMode
             ? 'none'
             : `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='${isWarm ? '%23FF6D50' : '%23FFFFFF'}' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundBlendMode: 'overlay',
-          opacity: isWarm ? 0.9 : 1,
+          opacity: 1,
           animation: shouldPulseWarmGlow && !lowPerfMode ? 'warm-glow-pulse 1.2s ease-in-out' : undefined,
         }}
       />

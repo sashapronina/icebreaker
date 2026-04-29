@@ -27,7 +27,7 @@ const Landing = ({ onGenerate, animationPhase }) => {
         <h1
           className="text-[40px] md:text-[48px] font-heading font-bold text-center mb-8 sm:mb-10 max-w-3xl leading-tight transition-all duration-500 ease-out"
           style={{
-            color: '#1F9DFF',
+            color: '#1699FF',
             transform: isExiting ? 'translateY(-24px)' : 'translateY(0)',
             opacity: isExiting ? 0 : 1,
           }}
@@ -36,7 +36,7 @@ const Landing = ({ onGenerate, animationPhase }) => {
         </h1>
       </div>
       <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 pb-12 sm:pb-20 md:pb-24 px-4 sm:px-6 w-full max-w-xl mx-auto">
-        <Button onClick={onGenerate} variant="primary" primaryColor="#1F9DFF" showEnterHint className="w-full sm:w-auto">
+        <Button onClick={onGenerate} variant="primary" primaryColor="#1699FF" showEnterHint className="w-full sm:w-auto">
           Generate
         </Button>
         <div className="h-9" aria-hidden />
