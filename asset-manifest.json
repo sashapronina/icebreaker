@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/icebreaker/static/css/main.0701c79f.css",
-    "main.js": "/icebreaker/static/js/main.0952fe54.js",
+    "main.css": "/icebreaker/static/css/main.00bff531.css",
+    "main.js": "/icebreaker/static/js/main.5ab21d46.js",
     "index.html": "/icebreaker/index.html",
-    "main.0701c79f.css.map": "/icebreaker/static/css/main.0701c79f.css.map",
-    "main.0952fe54.js.map": "/icebreaker/static/js/main.0952fe54.js.map"
+    "main.00bff531.css.map": "/icebreaker/static/css/main.00bff531.css.map",
+    "main.5ab21d46.js.map": "/icebreaker/static/js/main.5ab21d46.js.map"
   },
   "entrypoints": [
-    "static/css/main.0701c79f.css",
-    "static/js/main.0952fe54.js"
+    "static/css/main.00bff531.css",
+    "static/js/main.5ab21d46.js"
   ]
 }
