@@ -27,8 +27,11 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
       }}
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6">
-        <p className="text-sm font-body font-medium mb-2" style={{ color: '#FF6D50' }}>It&apos;s warmer now</p>
-        <h1 className="text-[40px] md:text-[48px] font-heading font-bold text-center mb-8 sm:mb-12 max-w-4xl leading-tight" style={{ color: '#FF6D50' }}>
+        <h1
+          key={activity.id ?? activity.name}
+          className="question-soft-fall text-[40px] md:text-[48px] font-heading font-bold text-center mb-8 sm:mb-12 max-w-4xl leading-tight"
+          style={{ color: '#FF6D50' }}
+        >
           {activity.name}
         </h1>
       </div>

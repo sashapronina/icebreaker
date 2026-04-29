@@ -5,7 +5,7 @@ const THEMES = {
   warm: '#FF6D50',
 }
 
-const Topbar = ({ showTagline = false, onLogoClick, onAboutClick, theme = 'cold' }) => {
+const Topbar = ({ onLogoClick, onAboutClick, theme = 'cold' }) => {
   const color = THEMES[theme] ?? THEMES.cold
   // Filter to tint black/neutral logo to theme color
   const logoFilter = theme === 'warm'
@@ -27,9 +27,6 @@ const Topbar = ({ showTagline = false, onLogoClick, onAboutClick, theme = 'cold'
           />
           <div>
             <h1 className="text-lg font-extrabold font-heading">Icebreaker</h1>
-            {showTagline && (
-              <p className="text-sm font-body opacity-90">Go beyond small talk</p>
-            )}
           </div>
         </div>
         <button

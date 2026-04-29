@@ -44,6 +44,15 @@ code {
   }
 }
 
+@keyframes seasonal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0);
+  }
+  100% {
+    transform: translate3d(var(--particle-drift-x, 10vw), 110vh, 0);
+  }
+}
+
 /* Warm glow pulse when regenerating */
 @keyframes warm-glow-pulse {
   0%,
@@ -56,4 +65,38 @@ code {
   70% {
     opacity: 0.95;
   }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translate3d(0, -10vh, 0);
+  }
+  100% {
+    transform: translate3d(8vw, 120vh, 0);
+  }
+}
+
+@keyframes petal-sway {
+  0%,
+  100% {
+    transform: translateX(-5px) rotate(-8deg);
+  }
+  50% {
+    transform: translateX(5px) rotate(8deg);
+  }
+}
+
+@keyframes question-soft-fall {
+  0% {
+    transform: translateY(-24px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.question-soft-fall {
+  animation: question-soft-fall 520ms ease-out both;
 }

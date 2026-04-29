@@ -28,7 +28,7 @@ const Button = ({
   iconPosition = 'right',
   className = ''
 }) => {
-  const baseClasses = "px-8 py-3 transition-all duration-200 flex items-center justify-center gap-0 z-10 rounded-lg min-h-[48px] " +
+  const baseClasses = "px-8 py-3 transition-all duration-200 flex items-center justify-center gap-0 z-10 min-h-[48px] " +
     (variant === 'primary' ? 'font-semibold' : 'font-bold')
   
   const variantClasses = {
@@ -47,7 +47,7 @@ const Button = ({
     : undefined
 
   const secondaryStyle = variant === 'secondary' && primaryColor ? { color: primaryColor } : undefined
-  const combinedStyle = { ...primaryStyle, ...secondaryStyle }
+  const combinedStyle = { borderRadius: '1000px', ...primaryStyle, ...secondaryStyle }
 
   const iconClasses = iconPosition === 'left' ? 'mr-2' : 'ml-2'
   const enterHintEl = showEnterHint && variant === 'primary' && !disabled && (

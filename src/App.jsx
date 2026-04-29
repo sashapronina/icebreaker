@@ -5,6 +5,7 @@ import ActivityDisplay from './components/ActivityDisplay'
 import Topbar from './components/Topbar'
 import GradientBackground from './components/GradientBackground'
 import AboutPage from './components/AboutPage'
+import MorphingParticlesOverlay from './components/MorphingParticlesOverlay'
 
 function App() {
   const [generatedActivity, setGeneratedActivity] = useState(null)
@@ -14,6 +15,8 @@ function App() {
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [animationPhase, setAnimationPhase] = useState('idle')
   const [isRegenerating, setIsRegenerating] = useState(false)
+  const isWarmState = !!generatedActivity
+  const isWarmVisualState = isWarmState || animationPhase === 'glowAnimation'
 
   useEffect(() => {
     const saved = localStorage.getItem('usedActivities')
@@ -74,13 +77,21 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden" style={{ backgroundColor: '#FDFCF3' }}>
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{ backgroundColor: isWarmVisualState ? '#FDFCF3' : '#FFFFFF' }}
+    >
       <GradientBackground
-        isActivityScreen={!!generatedActivity}
+        isActivityScreen={isWarmState}
         animationPhase={animationPhase}
         isRegenerating={isRegenerating}
       />
-      <Topbar showTagline onLogoClick={handleReset} onAboutClick={() => setShowAbout(true)} theme={generatedActivity ? 'warm' : 'cold'} />
+      <MorphingParticlesOverlay isWarm={isWarmVisualState} />
+      <Topbar
+        onLogoClick={handleReset}
+        onAboutClick={() => setShowAbout(true)}
+        theme={isWarmVisualState ? 'warm' : 'cold'}
+      />
 
       {showAbout && (
         <AboutPage onClose={() => setShowAbout(false)} />
