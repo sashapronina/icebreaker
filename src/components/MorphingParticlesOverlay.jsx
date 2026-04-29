@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 
 const PARTICLE_COUNT = 80
+const MOBILE_PARTICLE_COUNT = 20
 
 function generateParticles() {
   const particles = []
@@ -25,12 +26,23 @@ function generateParticles() {
   return particles
 }
 
-export default function MorphingParticlesOverlay({ isWarm = false }) {
+function isLowPerfMode() {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false
+  return (
+    window.matchMedia('(max-width: 768px)').matches ||
+    window.matchMedia('(pointer: coarse)').matches ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
+export default function MorphingParticlesOverlay({ isWarm = false, lowPerfMode = false }) {
   const particles = useMemo(() => generateParticles(), [])
+  const shouldReduceEffects = lowPerfMode || isLowPerfMode()
+  const visibleParticles = shouldReduceEffects ? particles.slice(0, MOBILE_PARTICLE_COUNT) : particles
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-30" aria-hidden>
-      {particles.map((p) => (
+      {visibleParticles.map((p) => (
         <div
           key={p.id}
           className="absolute"
@@ -52,7 +64,9 @@ export default function MorphingParticlesOverlay({ isWarm = false }) {
               background: isWarm
                 ? 'linear-gradient(135deg, rgba(255, 138, 122, 0.68), rgba(255, 109, 80, 0.42))'
                 : 'rgba(255, 255, 255, 0.95)',
-              boxShadow: isWarm
+              boxShadow: shouldReduceEffects
+                ? 'none'
+                : isWarm
                 ? '0 0 8px rgba(255, 109, 80, 0.24)'
                 : '0 0 5px rgba(255, 255, 255, 0.45)',
             }}

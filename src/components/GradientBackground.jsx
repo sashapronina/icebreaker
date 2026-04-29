@@ -1,8 +1,18 @@
 import React from 'react'
 
+function isLowPerfMode() {
+  if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return false
+  return (
+    window.matchMedia('(max-width: 768px)').matches ||
+    window.matchMedia('(pointer: coarse)').matches ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
 const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle', isRegenerating = false }) => {
   const isWarm = isActivityScreen || animationPhase === 'glowAnimation'
   const shouldPulseWarmGlow = isActivityScreen && isRegenerating
+  const lowPerfMode = isLowPerfMode()
   const translateY = isWarm ? '-240px' : '-190px'
 
   return (
@@ -11,20 +21,22 @@ const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle',
       <div
         className="absolute bottom-0 left-1/2 z-0 transition-all duration-1000 ease-in-out"
         style={{
-          width: '2400px',
-          maxWidth: '165vw',
-          height: '900px',
+          width: lowPerfMode ? '1400px' : '2400px',
+          maxWidth: lowPerfMode ? '120vw' : '165vw',
+          height: lowPerfMode ? '560px' : '900px',
           backgroundColor: isWarm ? 'rgba(255, 109, 80, 0.5)' : 'rgba(31, 157, 255, 0.5)',
           borderRadius: '50%',
-          filter: 'blur(180px)',
+          filter: lowPerfMode ? 'blur(70px)' : 'blur(180px)',
           transform: `translate(-50%, calc(50% + ${translateY}))`,
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='${isWarm ? '%23FF6D50' : '%23FFFFFF'}' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundImage: lowPerfMode
+            ? 'none'
+            : `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='${isWarm ? '%23FF6D50' : '%23FFFFFF'}' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundBlendMode: 'overlay',
           opacity: isWarm ? 0.9 : 1,
-          animation: shouldPulseWarmGlow ? 'warm-glow-pulse 1.2s ease-in-out' : undefined,
+          animation: shouldPulseWarmGlow && !lowPerfMode ? 'warm-glow-pulse 1.2s ease-in-out' : undefined,
         }}
       />
-      {isActivityScreen && (
+      {isActivityScreen && !lowPerfMode && (
         <>
           {/* Additional warm glows in activity state */}
           <div
@@ -45,13 +57,15 @@ const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle',
       )}
       
       {/* Noise overlay effect - reduced opacity */}
-      <div 
-        className="absolute inset-0 opacity-10 mix-blend-soft-light"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          backgroundSize: '256px 256px'
-        }}
-      />
+      {!lowPerfMode && (
+        <div
+          className="absolute inset-0 opacity-10 mix-blend-soft-light"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            backgroundSize: '256px 256px'
+          }}
+        />
+      )}
     </div>
   )
 }
