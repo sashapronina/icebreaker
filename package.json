@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "Generate a random icebreaker question for your team. Go beyond small talk.",
   "main": "index.js",
+  "homepage": "https://sashapronina.github.io/icebreaker",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -17,7 +20,8 @@
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.4.17",
+    "gh-pages": "^6.1.1"
   },
   "browserslist": {
     "production": [

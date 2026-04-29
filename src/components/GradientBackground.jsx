@@ -3,7 +3,7 @@ import React from 'react'
 const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle', isRegenerating = false }) => {
   const isWarm = isActivityScreen || animationPhase === 'glowAnimation'
   const shouldPulseWarmGlow = isActivityScreen && isRegenerating
-  const translateY = isWarm ? '50px' : '100px'
+  const translateY = isWarm ? '-240px' : '-190px'
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden">
@@ -11,12 +11,12 @@ const GradientBackground = ({ isActivityScreen = false, animationPhase = 'idle',
       <div
         className="absolute bottom-0 left-1/2 z-0 transition-all duration-1000 ease-in-out"
         style={{
-          width: '1727px',
-          maxWidth: '120vw',
-          height: '507px',
+          width: '2400px',
+          maxWidth: '165vw',
+          height: '900px',
           backgroundColor: isWarm ? 'rgba(255, 109, 80, 0.5)' : 'rgba(31, 157, 255, 0.5)',
           borderRadius: '50%',
-          filter: 'blur(150px)',
+          filter: 'blur(180px)',
           transform: `translate(-50%, calc(50% + ${translateY}))`,
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' fill='${isWarm ? '%23FF6D50' : '%23FFFFFF'}' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundBlendMode: 'overlay',
