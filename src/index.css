@@ -100,3 +100,9 @@ code {
 .question-soft-fall {
   animation: question-soft-fall 520ms ease-out both;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .question-soft-fall {
+    animation: none;
+  }
+}
