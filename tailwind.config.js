@@ -4,12 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['Jost', 'sans-serif'],
+      heading: ['Jost', 'sans-serif'],
+      body: ['Jost', 'sans-serif'],
+    },
     extend: {
-      fontFamily: {
-        'heading': ['Plus Jakarta Sans', 'sans-serif'],
-        'body': ['Hind', 'sans-serif'],
-      },
       colors: {
+        'text-primary': '#212325',
         'cool': {
           50: '#F7F9FF',
           900: '#2940FF',

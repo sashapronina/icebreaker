@@ -5,7 +5,9 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
   useEffect(() => {
     const handleKeyPress = (event) => {
       const target = event.target
-      const isInput = target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)
+      const isInput =
+        target &&
+        (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)
       if (isInput) return
       if (event.key === 'Enter') {
         onNewActivity()
@@ -20,7 +22,7 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
 
   return (
     <div
-      className="min-h-screen relative px-4 sm:px-6 transition-opacity duration-500"
+      className="min-h-screen relative z-10 px-4 sm:px-6 transition-opacity duration-500"
       style={{
         paddingTop: 'clamp(60px, 12vw, 88px)',
         opacity: animationPhase === 'fadeIn' || animationPhase === 'idle' ? 1 : 0,
@@ -29,8 +31,7 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6">
         <h1
           key={activity.id ?? activity.name}
-          className="question-soft-fall text-[40px] md:text-[48px] font-heading font-bold text-center mb-8 sm:mb-12 max-w-4xl leading-tight"
-          style={{ color: '#FF6D50' }}
+          className="main-text question-soft-fall text-center mb-8 sm:mb-12"
         >
           {activity.name}
         </h1>
@@ -42,8 +43,7 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
       >
         <Button
           onClick={onNewActivity}
-          variant="primary"
-          primaryColor="#FF6D50"
+          variant="frosted"
           showEnterHint
           className="w-full sm:w-auto"
         >
@@ -52,7 +52,6 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
         <Button
           onClick={onReset}
           variant="secondary"
-          primaryColor="#FF6D50"
           shortcutKey="R"
           className="font-body hover:opacity-80 w-full sm:w-auto text-base"
         >

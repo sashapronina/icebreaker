@@ -1,12 +1,14 @@
 import React from 'react'
+import { TEXT_COLOR } from '../theme'
 
-const EnterKeyIcon = () => (
+const EnterKeyIcon = ({ color }) => (
   <span
     className="inline-flex items-center justify-center"
     style={{
       fontSize: '14px',
       lineHeight: '1',
       fontWeight: 400,
+      color,
       transform: 'translateY(1px)',
     }}
     aria-hidden
@@ -15,39 +17,55 @@ const EnterKeyIcon = () => (
   </span>
 )
 
-const Button = ({ 
-  children, 
-  onClick, 
-  disabled = false, 
+const Button = ({
+  children,
+  onClick,
+  disabled = false,
   variant = 'primary',
   primaryColor,
   icon,
   showEnterHint = false,
   shortcutKey,
   iconPosition = 'right',
-  className = ''
+  className = '',
 }) => {
-  const baseClasses = "px-8 py-3 transition-all duration-200 flex items-center justify-center gap-0 z-10 min-h-[48px] " +
-    (variant === 'primary' ? 'font-semibold' : 'font-bold')
-  
+  const isFrosted = variant === 'frosted'
+
+  const baseClasses =
+    'transition-all duration-200 flex items-center justify-center z-10 ' +
+    (isFrosted
+      ? 'gap-2.5 px-6 py-2 min-h-[39px] font-normal text-base rounded'
+      : 'gap-0 px-8 py-3 min-h-[48px] rounded-full ' +
+        (variant === 'primary' ? 'font-semibold' : 'font-normal'))
+
   const variantClasses = {
-    primary: disabled 
-      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
-      : 'text-white',
-    secondary: disabled
-      ? 'text-gray-400 cursor-not-allowed'
-      : 'text-gray-600 hover:text-gray-800'
+    primary: disabled ? 'bg-gray-300 cursor-not-allowed opacity-50' : '',
+    secondary: disabled ? 'cursor-not-allowed opacity-40' : 'hover:opacity-80',
+    frosted: disabled ? 'opacity-50 cursor-not-allowed' : '',
   }
 
-  const primaryStyle = variant === 'primary' && !disabled && primaryColor
-    ? { backgroundColor: primaryColor }
-    : variant === 'primary' && !disabled
-    ? { backgroundColor: '#121212' }
-    : undefined
+  const primaryStyle =
+    variant === 'primary' && !disabled && primaryColor
+      ? { backgroundColor: primaryColor, color: TEXT_COLOR }
+      : variant === 'primary' && !disabled
+      ? { backgroundColor: '#121212', color: TEXT_COLOR }
+      : undefined
 
-  const secondaryStyle = variant === 'secondary' && primaryColor ? { color: primaryColor } : undefined
-  const combinedStyle = { borderRadius: '1000px', ...primaryStyle, ...secondaryStyle }
-  const shortcutBadgeBaseClasses = 'ml-2 inline-flex items-center justify-center self-center rounded'
+  const frostedStyle =
+    isFrosted
+      ? {
+          backgroundColor: 'rgba(255, 255, 255, 0.3)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+          color: TEXT_COLOR,
+        }
+      : undefined
+
+  const secondaryStyle =
+    variant === 'secondary' && !disabled ? { color: TEXT_COLOR } : undefined
+  const combinedStyle = { ...primaryStyle, ...frostedStyle, ...secondaryStyle }
+
+  const shortcutBadgeBaseClasses =
+    'inline-flex items-center justify-center self-center rounded'
   const shortcutBadgeBaseStyle = {
     width: '24px',
     height: '24px',
@@ -55,23 +73,35 @@ const Button = ({
   }
 
   const iconClasses = iconPosition === 'left' ? 'mr-2' : 'ml-2'
-  const enterHintEl = showEnterHint && variant === 'primary' && !disabled && (
+
+  const enterHintEl = showEnterHint && isFrosted && !disabled && (
     <span
       className={shortcutBadgeBaseClasses}
-      style={{ ...shortcutBadgeBaseStyle, backgroundColor: 'rgba(255,255,255,0.25)' }}
+      style={shortcutBadgeBaseStyle}
       aria-hidden
     >
-      <EnterKeyIcon />
+      <EnterKeyIcon color={TEXT_COLOR} />
     </span>
   )
 
+  const enterHintPrimary =
+    showEnterHint && variant === 'primary' && !disabled && (
+      <span
+        className={`ml-2 ${shortcutBadgeBaseClasses}`}
+        style={{ ...shortcutBadgeBaseStyle, backgroundColor: 'rgba(255,255,255,0.25)' }}
+        aria-hidden
+      >
+        <EnterKeyIcon color={TEXT_COLOR} />
+      </span>
+    )
+
   const shortcutKeyHint = shortcutKey && variant === 'secondary' && !disabled && (
     <span
-      className={shortcutBadgeBaseClasses}
+      className={`ml-2 ${shortcutBadgeBaseClasses}`}
       style={{
         ...shortcutBadgeBaseStyle,
         backgroundColor: 'rgba(255, 255, 255, 0.6)',
-        color: primaryColor || '#FF6D50',
+        color: TEXT_COLOR,
         fontSize: '14px',
         lineHeight: '1',
         fontWeight: 400,
@@ -89,11 +119,10 @@ const Button = ({
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
       style={combinedStyle}
     >
-      {icon && iconPosition === 'left' && (
-        <span className={iconClasses}>{icon}</span>
-      )}
+      {icon && iconPosition === 'left' && <span className={iconClasses}>{icon}</span>}
       {children}
       {enterHintEl}
+      {enterHintPrimary}
       {shortcutKeyHint}
       {icon && !showEnterHint && iconPosition === 'right' && (
         <span className={iconClasses}>{icon}</span>

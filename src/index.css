@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: 'Hind', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  :root {
+    --color-text: #212325;
+  }
+
+  html,
+  body,
+  #root {
+    font-family: 'Jost', sans-serif;
+    color: var(--color-text);
+  }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 code {
@@ -16,13 +26,127 @@ code {
     monospace;
 }
 
-/* Custom font classes */
-.font-heading {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+.main-text {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 1.25;
+  width: 100%;
+  max-width: 37.33rem; /* max-w-4xl (56rem) ÷ 1.5 */
 }
 
-.font-body {
-  font-family: 'Hind', sans-serif;
+/* Isolated group: images overlay-blend with the sky fill inside .scene-blend-root */
+.scene-blend-root {
+  isolation: isolate;
+}
+
+.scene-clouds,
+.scene-mountains {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  opacity: 1;
+  mix-blend-mode: overlay;
+}
+
+.scene-clouds {
+  top: -30px;
+  max-height: 58vh;
+  height: auto;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.scene-mountains {
+  bottom: -100px;
+  height: auto;
+  object-fit: cover;
+  object-position: bottom center;
+  max-height: min(72vh, calc(100vw * 768 / 1366));
+}
+
+/* Tree scenery */
+.tree-side {
+  transition: left 1000ms ease-in-out, right 1000ms ease-in-out;
+}
+
+.tree-side-left {
+  left: -20px;
+}
+
+.tree-side-right {
+  right: -20px;
+}
+
+.tree-side-settled.tree-side-left {
+  left: 0;
+}
+
+.tree-side-settled.tree-side-right {
+  right: 0;
+}
+
+.tree-leaves {
+  transition: opacity 1000ms ease-in-out;
+}
+
+.tree-leaves-hidden {
+  opacity: 0;
+}
+
+.tree-leaves-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tree-side,
+  .tree-leaves {
+    transition: none;
+  }
+}
+
+/* Cold page cloud stack */
+.cold-cloud-layers {
+  transition: opacity 700ms ease-in-out;
+}
+
+.cold-cloud-layer {
+  display: block;
+  filter: blur(0.35px);
+  transition: background 1000ms ease-in-out;
+}
+
+.cloud-layer-shell {
+  transition:
+    top 1000ms ease-in-out,
+    transform 1000ms ease-in-out,
+    opacity 700ms ease-in-out;
+}
+
+.cloud-layer-exit {
+  transform: translateY(calc(-100% - 24px));
+  opacity: 0;
+}
+
+.cold-cloud-layer-warm {
+  mix-blend-mode: multiply;
+}
+
+.cold-cloud-tint-fade {
+  opacity: 0;
+  transition: opacity 700ms ease-in-out;
+}
+
+.cold-cloud-tint {
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(100, 175, 240, 0.22) 0%,
+    rgba(131, 200, 255, 0.12) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  mix-blend-mode: multiply;
 }
 
 /* Snowstorm overlay */

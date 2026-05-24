@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react'
 
-const PARTICLE_COUNT = 80
-const MOBILE_PARTICLE_COUNT = 20
+const PARTICLE_COUNT = 150
+const MOBILE_PARTICLE_COUNT = 45
 
 function generateParticles() {
   const particles = []
@@ -10,13 +10,13 @@ function generateParticles() {
       id: i,
       left: Math.random() * 100,
       top: Math.random() * 100 - 12,
-      coldWidth: 3 + Math.random() * 8,
-      coldHeight: 1.5 + Math.random() * 3,
+      coldWidth: 4 + Math.random() * 9,
+      coldHeight: 2 + Math.random() * 3.5,
       warmWidth: 12 + Math.random() * 14,
       warmHeight: 7 + Math.random() * 8,
       coldRotate: 20 + Math.random() * 15,
       warmRotate: -35 + Math.random() * 70,
-      coldOpacity: 0.2 + Math.random() * 0.45,
+      coldOpacity: 0.75 + Math.random() * 0.25,
       warmOpacity: 0.12 + Math.random() * 0.2,
       duration: 8 + Math.random() * 10,
       delay: Math.random() * -16,
@@ -41,7 +41,7 @@ export default function MorphingParticlesOverlay({ isWarm = false, lowPerfMode =
   const visibleParticles = shouldReduceEffects ? particles.slice(0, MOBILE_PARTICLE_COUNT) : particles
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden" aria-hidden>
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-[30]" aria-hidden>
       {visibleParticles.map((p) => (
         <div
           key={p.id}
@@ -63,12 +63,12 @@ export default function MorphingParticlesOverlay({ isWarm = false, lowPerfMode =
               borderRadius: isWarm ? '60% 40% 65% 35% / 65% 35% 65% 35%' : '999px',
               background: isWarm
                 ? 'linear-gradient(135deg, rgba(255, 138, 122, 0.68), rgba(255, 109, 80, 0.42))'
-                : 'rgba(255, 255, 255, 0.95)',
+                : '#FFFFFF',
               boxShadow: shouldReduceEffects
                 ? 'none'
                 : isWarm
                 ? '0 0 8px rgba(255, 109, 80, 0.24)'
-                : '0 0 5px rgba(255, 255, 255, 0.45)',
+                : '0 0 6px rgba(255, 255, 255, 0.85), 0 0 2px rgba(255, 255, 255, 1)',
             }}
           />
         </div>

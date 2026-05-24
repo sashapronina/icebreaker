@@ -3,9 +3,10 @@ import icebreakersData from './data/icebreakers.json'
 import Landing from './components/Landing'
 import ActivityDisplay from './components/ActivityDisplay'
 import Topbar from './components/Topbar'
-import GradientBackground from './components/GradientBackground'
 import AboutPage from './components/AboutPage'
 import MorphingParticlesOverlay from './components/MorphingParticlesOverlay'
+import SceneBackground from './components/SceneBackground'
+import TreeScenery from './components/TreeScenery'
 
 function App() {
   const [generatedActivity, setGeneratedActivity] = useState(null)
@@ -78,14 +79,11 @@ function App() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden"
-      style={{ backgroundColor: isWarmVisualState ? '#FDFCF3' : '#FFFFFF' }}
+      className="min-h-screen relative overflow-hidden transition-colors duration-1000 ease-in-out"
+      style={{ backgroundColor: isWarmVisualState ? '#FFEAEC' : '#EAF2FB' }}
     >
-      <GradientBackground
-        isActivityScreen={isWarmState}
-        animationPhase={animationPhase}
-        isRegenerating={isRegenerating}
-      />
+      <SceneBackground isWarm={isWarmVisualState} />
+      <TreeScenery isWarm={isWarmVisualState} />
       <MorphingParticlesOverlay isWarm={isWarmVisualState} />
       <Topbar
         onLogoClick={handleReset}

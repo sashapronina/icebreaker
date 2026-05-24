@@ -15,34 +15,36 @@ const Landing = ({ onGenerate, animationPhase }) => {
   }, [onGenerate])
 
   return (
-    <>
     <div
-      className="min-h-screen relative px-4 sm:px-6 transition-opacity duration-500"
+      className="min-h-screen relative z-10 px-4 sm:px-6 transition-opacity duration-500"
       style={{
         paddingTop: 'clamp(60px, 12vw, 88px)',
         opacity: animationPhase === 'fadeOut' || animationPhase === 'glowAnimation' ? 0 : 1,
       }}
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6">
-        <h1
-          className="text-[40px] md:text-[48px] font-heading font-bold text-center mb-8 sm:mb-10 max-w-3xl leading-tight transition-all duration-500 ease-out"
+        <div
+          className="flex flex-col items-center w-full max-w-sm transition-all duration-500 ease-out"
           style={{
-            color: '#1699FF',
+            gap: '32px',
             transform: isExiting ? 'translateY(-24px)' : 'translateY(0)',
             opacity: isExiting ? 0 : 1,
           }}
         >
-          It&apos;s a little cold in here. Find an icebreaker for the team.
-        </h1>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 pb-12 sm:pb-20 md:pb-24 px-4 sm:px-6 w-full max-w-xl mx-auto">
-        <Button onClick={onGenerate} variant="primary" primaryColor="#1699FF" showEnterHint className="w-full sm:w-auto">
-          Generate
-        </Button>
-        <div className="h-9" aria-hidden />
+          <h1 className="main-text text-center">
+            It&apos;s a little cold in here.
+          </h1>
+          <Button
+            onClick={onGenerate}
+            variant="frosted"
+            showEnterHint
+            className="w-full sm:w-auto"
+          >
+            Break the ice
+          </Button>
+        </div>
       </div>
     </div>
-    </>
   )
 }
 
