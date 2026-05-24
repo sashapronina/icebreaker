@@ -1,7 +1,5 @@
 import React from 'react'
-
-const COLD_BG = '#EAF2FB'
-const WARM_BG = '#FFEAEC'
+import { COLD_BG, WARM_BG } from '../theme'
 
 function assetUrl(path) {
   return `${process.env.PUBLIC_URL}${path}`

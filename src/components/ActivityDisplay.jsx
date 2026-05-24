@@ -47,7 +47,7 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
           showEnterHint
           className="w-full sm:w-auto"
         >
-          Regenerate
+          Try another
         </Button>
         <Button
           onClick={onReset}

@@ -32,7 +32,7 @@ function TreeSide({ side, isWarm }) {
       className={`tree-side fixed z-[8] pointer-events-none ${
         isLeft ? 'tree-side-left' : 'tree-side-right'
       } ${isWarm ? 'tree-side-settled' : ''}`}
-      style={{ top: config.top }}
+      style={isLeft ? undefined : { top: config.top }}
       aria-hidden
     >
       <div

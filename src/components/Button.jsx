@@ -65,7 +65,7 @@ const Button = ({
   const combinedStyle = { ...primaryStyle, ...frostedStyle, ...secondaryStyle }
 
   const shortcutBadgeBaseClasses =
-    'inline-flex items-center justify-center self-center rounded'
+    'hidden md:inline-flex items-center justify-center self-center rounded'
   const shortcutBadgeBaseStyle = {
     width: '24px',
     height: '24px',

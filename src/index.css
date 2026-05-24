@@ -67,11 +67,15 @@ code {
 
 /* Tree scenery */
 .tree-side {
-  transition: left 1000ms ease-in-out, right 1000ms ease-in-out;
+  transition:
+    left 1000ms ease-in-out,
+    right 1000ms ease-in-out,
+    top 1000ms ease-in-out;
 }
 
 .tree-side-left {
   left: -20px;
+  top: 14vh;
 }
 
 .tree-side-right {
@@ -84,6 +88,25 @@ code {
 
 .tree-side-settled.tree-side-right {
   right: 0;
+}
+
+@media (max-width: 767px) {
+  .tree-side-left {
+    left: -72px;
+    top: calc(14vh + 100px);
+  }
+
+  .tree-side-right {
+    right: -150px;
+  }
+
+  .tree-side-settled.tree-side-left {
+    left: -40px;
+  }
+
+  .tree-side-settled.tree-side-right {
+    right: -100px;
+  }
 }
 
 .tree-leaves {
@@ -211,22 +234,48 @@ code {
 }
 
 @keyframes question-soft-fall {
-  0% {
-    transform: translateY(-24px);
+  from {
     opacity: 0;
+    transform: translateY(-16px);
   }
-  100% {
-    transform: translateY(0);
+  to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
 .question-soft-fall {
-  animation: question-soft-fall 520ms ease-out both;
+  animation: question-soft-fall 2s ease-in-out both;
+}
+
+@keyframes cold-text-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cold-text-rise {
+  animation: cold-text-rise 2s ease-in-out both;
+}
+
+.cold-content-exit {
+  transition:
+    transform 1.4s ease-in-out,
+    opacity 1.4s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .question-soft-fall {
+  .question-soft-fall,
+  .cold-text-rise {
     animation: none;
+  }
+
+  .cold-content-exit {
+    transition: none;
   }
 }
