@@ -4,7 +4,7 @@ import { COLD_BG, TEXT_COLOR, WARM_BG } from '../theme'
 const AboutPage = ({ onClose, isWarm = false }) => {
   return (
     <div
-      className="fixed inset-0 z-[60] flex flex-col items-center justify-center px-6 sm:px-10 md:px-16 transition-colors duration-1000 ease-in-out"
+      className="motion-scene fixed inset-0 z-[60] flex flex-col items-center justify-center px-6 sm:px-10 md:px-16"
       style={{
         backgroundColor: isWarm ? WARM_BG : COLD_BG,
         color: TEXT_COLOR,

@@ -22,10 +22,9 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
 
   return (
     <div
-      className="min-h-screen relative z-10 px-4 sm:px-6 transition-opacity duration-500"
+      className="min-h-screen relative z-10 px-4 sm:px-6"
       style={{
         paddingTop: 'clamp(60px, 12vw, 88px)',
-        opacity: animationPhase === 'fadeIn' || animationPhase === 'idle' ? 1 : 0,
       }}
     >
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 sm:px-6">

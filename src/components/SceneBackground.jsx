@@ -11,7 +11,7 @@ export default function SceneBackground({ isWarm = false }) {
   return (
     <div className="scene-background fixed inset-0 z-[3] pointer-events-none" aria-hidden>
       <div
-        className="scene-blend-root absolute inset-0 transition-colors duration-1000 ease-in-out"
+        className="scene-blend-root motion-scene absolute inset-0"
         style={{ backgroundColor: skyColor }}
       >
         <img

@@ -5,6 +5,13 @@
 @layer base {
   :root {
     --color-text: #212325;
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    --ease-in: cubic-bezier(0.55, 0, 1, 0.45);
+    --duration-scene: 700ms;
+    --duration-content-exit: 400ms;
+    --duration-content-enter: 500ms;
+    --duration-particle-morph: 750ms;
+    --duration-press: 160ms;
   }
 
   html,
@@ -65,52 +72,56 @@ code {
   max-height: min(72vh, calc(100vw * 768 / 1366));
 }
 
-/* Tree scenery */
+/* Scene + app shell color transitions */
+.motion-scene {
+  transition: background-color var(--duration-scene) var(--ease-out);
+}
+
+/* Tree scenery — transform only (GPU-friendly, no ease-in-out “bounce”) */
 .tree-side {
-  transition:
-    left 1000ms ease-in-out,
-    right 1000ms ease-in-out,
-    top 1000ms ease-in-out;
+  transition: transform var(--duration-scene) var(--ease-out);
 }
 
 .tree-side-left {
-  left: -20px;
+  left: 0;
   top: 14vh;
+  transform: translateX(-20px);
 }
 
 .tree-side-right {
-  right: -20px;
+  right: 0;
+  transform: translateX(20px);
 }
 
 .tree-side-settled.tree-side-left {
-  left: 0;
+  transform: translateX(0);
 }
 
 .tree-side-settled.tree-side-right {
-  right: 0;
+  transform: translateX(0);
 }
 
 @media (max-width: 767px) {
   .tree-side-left {
-    left: -72px;
     top: calc(14vh + 100px);
+    transform: translateX(-72px);
   }
 
   .tree-side-right {
-    right: -150px;
+    transform: translateX(150px);
   }
 
   .tree-side-settled.tree-side-left {
-    left: -40px;
+    transform: translateX(-40px);
   }
 
   .tree-side-settled.tree-side-right {
-    right: -100px;
+    transform: translateX(100px);
   }
 }
 
 .tree-leaves {
-  transition: opacity 1000ms ease-in-out;
+  transition: opacity var(--duration-scene) var(--ease-out);
 }
 
 .tree-leaves-hidden {
@@ -233,40 +244,81 @@ code {
   }
 }
 
-@keyframes question-soft-fall {
+/* Movement and opacity are split so text stays faint until it nearly lands */
+@keyframes question-soft-fall-move {
+  from {
+    transform: translateY(-8px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes question-soft-fall-fade {
   from {
     opacity: 0;
-    transform: translateY(-16px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }
 
 .question-soft-fall {
-  animation: question-soft-fall 2s ease-in-out both;
+  animation:
+    question-soft-fall-move var(--duration-content-enter) var(--ease-out) both,
+    question-soft-fall-fade var(--duration-content-enter) var(--ease-in) both;
 }
 
-@keyframes cold-text-rise {
+@keyframes cold-text-rise-move {
   from {
-    opacity: 0;
     transform: translateY(16px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
 
+@keyframes cold-text-rise-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .cold-text-rise {
-  animation: cold-text-rise 2s ease-in-out both;
+  animation:
+    cold-text-rise-move 600ms var(--ease-out) both,
+    cold-text-rise-fade 600ms var(--ease-in) both;
+}
+
+.landing-shell {
+  transition: opacity var(--duration-scene) var(--ease-out);
 }
 
 .cold-content-exit {
   transition:
-    transform 1.4s ease-in-out,
-    opacity 1.4s ease-in-out;
+    transform var(--duration-content-exit) var(--ease-in),
+    opacity var(--duration-content-exit) var(--ease-in);
+}
+
+.particle-morph {
+  transition:
+    width var(--duration-particle-morph) var(--ease-out),
+    height var(--duration-particle-morph) var(--ease-out),
+    opacity var(--duration-particle-morph) var(--ease-out),
+    transform var(--duration-particle-morph) var(--ease-out),
+    border-radius var(--duration-particle-morph) var(--ease-out),
+    box-shadow var(--duration-particle-morph) var(--ease-out);
+}
+
+.ui-pressable {
+  transition: transform var(--duration-press) var(--ease-out);
+}
+
+.ui-pressable:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -275,7 +327,10 @@ code {
     animation: none;
   }
 
-  .cold-content-exit {
+  .cold-content-exit,
+  .particle-morph,
+  .motion-scene,
+  .landing-shell {
     transition: none;
   }
 }

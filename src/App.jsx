@@ -7,7 +7,7 @@ import AboutPage from './components/AboutPage'
 import MorphingParticlesOverlay from './components/MorphingParticlesOverlay'
 import SceneBackground from './components/SceneBackground'
 import TreeScenery from './components/TreeScenery'
-import { COLD_BG, WARM_BG } from './theme'
+import { COLD_BG, MOTION_MS, WARM_BG } from './theme'
 
 function App() {
   const [generatedActivity, setGeneratedActivity] = useState(null)
@@ -49,15 +49,20 @@ function App() {
     setIsTransitioning(true)
     setAnimationPhase('fadeOut')
 
-    setTimeout(() => setAnimationPhase('glowAnimation'), 1400)
+    const { contentExit, scene, contentEnter } = MOTION_MS
+    const sceneWarmAt = contentExit
+    const showQuestionAt = contentExit + scene
+    const transitionEnd = showQuestionAt + contentEnter
+
+    setTimeout(() => setAnimationPhase('glowAnimation'), sceneWarmAt)
     setTimeout(() => {
       setGeneratedActivity(selectedActivity)
       setAnimationPhase('fadeIn')
-    }, 2800)
+    }, showQuestionAt)
     setTimeout(() => {
       setAnimationPhase('idle')
       setIsTransitioning(false)
-    }, 3800)
+    }, transitionEnd)
   }
 
   const handleReset = () => {
@@ -80,12 +85,12 @@ function App() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden transition-colors duration-1000 ease-in-out"
+      className="motion-scene min-h-screen relative overflow-hidden"
       style={{ backgroundColor: isWarmVisualState ? WARM_BG : COLD_BG }}
     >
       <SceneBackground isWarm={isWarmVisualState} />
       <TreeScenery isWarm={isWarmVisualState} />
-      <MorphingParticlesOverlay isWarm={isWarmState} />
+      <MorphingParticlesOverlay isWarm={isWarmVisualState} />
       <Topbar
         onLogoClick={handleReset}
         onAboutClick={() => setShowAbout(true)}

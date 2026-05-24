@@ -32,7 +32,7 @@ const Button = ({
   const isFrosted = variant === 'frosted'
 
   const baseClasses =
-    'transition-all duration-200 flex items-center justify-center z-10 ' +
+    'ui-pressable flex items-center justify-center z-10 transition-[background-color,border-color,color,opacity] duration-[160ms] ease-out ' +
     (isFrosted
       ? 'gap-2.5 px-6 py-2 min-h-[39px] font-normal text-base rounded'
       : 'gap-0 px-8 py-3 min-h-[48px] rounded-full ' +

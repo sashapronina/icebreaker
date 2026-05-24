@@ -19,6 +19,7 @@ function generateParticles() {
       coldOpacity: 0.75 + Math.random() * 0.25,
       warmOpacity: 0.12 + Math.random() * 0.2,
       duration: 8 + Math.random() * 10,
+      warmDuration: 14 + Math.random() * 10,
       delay: Math.random() * -16,
       driftX: 7 + Math.random() * 12,
     })
@@ -49,12 +50,12 @@ export default function MorphingParticlesOverlay({ isWarm = false, lowPerfMode =
           style={{
             left: `${p.left}%`,
             top: `${p.top}%`,
-            animation: `seasonal-fall ${p.duration}s linear ${p.delay}s infinite`,
+            animation: `seasonal-fall ${isWarm ? p.warmDuration : p.duration}s linear ${p.delay}s infinite`,
             '--particle-drift-x': `${p.driftX}vw`,
           }}
         >
           <div
-            className="transition-all duration-1000 ease-in-out"
+            className="particle-morph"
             style={{
               width: `${isWarm ? p.warmWidth : p.coldWidth}px`,
               height: `${isWarm ? p.warmHeight : p.coldHeight}px`,
