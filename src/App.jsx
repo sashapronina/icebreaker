@@ -84,7 +84,7 @@ function App() {
     >
       <SceneBackground isWarm={isWarmVisualState} />
       <TreeScenery isWarm={isWarmVisualState} />
-      <MorphingParticlesOverlay isWarm={isWarmVisualState} />
+      <MorphingParticlesOverlay isWarm={isWarmState} />
       <Topbar
         onLogoClick={handleReset}
         onAboutClick={() => setShowAbout(true)}

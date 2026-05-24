@@ -54,8 +54,8 @@ const Button = ({
   const frostedStyle =
     isFrosted
       ? {
-          backgroundColor: 'rgba(255, 255, 255, 0.3)',
-          border: '1px solid rgba(255, 255, 255, 0.3)',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+          border: '1px solid rgba(255, 255, 255, 0.5)',
           color: TEXT_COLOR,
         }
       : undefined

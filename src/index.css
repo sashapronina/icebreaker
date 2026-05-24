@@ -58,7 +58,7 @@ code {
 }
 
 .scene-mountains {
-  bottom: -100px;
+  bottom: -80px;
   height: auto;
   object-fit: cover;
   object-position: bottom center;
