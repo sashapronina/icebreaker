@@ -10,7 +10,7 @@ const TREE_SIDES = {
     leaves: '/trees/tree-left-painted-leaves.png',
     width: 129,
     height: 286,
-    displayHeight: 'min(60vh, 414px)',
+    displayHeight: '354px',
     top: '14vh',
   },
   right: {
@@ -18,7 +18,7 @@ const TREE_SIDES = {
     leaves: '/trees/tree-right-leaves.png',
     width: 294,
     height: 383,
-    displayHeight: 'min(78vh, 552px)',
+    displayHeight: '440px',
     top: '0',
   },
 }

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Button from './Button'
+import MobileCtaDock from './MobileCtaDock'
 
 const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isRegenerating }) => {
   useEffect(() => {
@@ -22,7 +23,7 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
 
   return (
     <div
-      className="min-h-screen relative z-10 px-4 sm:px-6"
+      className="min-h-screen relative z-40 px-4 sm:px-6"
       style={{
         paddingTop: 'clamp(60px, 12vw, 88px)',
       }}
@@ -36,25 +37,31 @@ const ActivityDisplay = ({ activity, onReset, onNewActivity, animationPhase, isR
         </h1>
       </div>
 
-      <div
-        className="absolute bottom-0 left-0 right-0 flex flex-col items-center gap-4 pb-4 sm:pb-20 md:pb-24 px-4 sm:px-6 w-full max-w-xl mx-auto"
-        style={{ paddingBottom: 'max(16px, env(safe-area-inset-bottom))' }}
-      >
-        <Button
-          onClick={onNewActivity}
-          variant="frosted"
-          showEnterHint
-          className="w-full sm:w-auto"
-        >
-          Try another
-        </Button>
+      <MobileCtaDock>
         <Button
           onClick={onReset}
           variant="secondary"
           shortcutKey="R"
-          className="font-body hover:opacity-80 w-full sm:w-auto text-base"
+          className="font-body hover:opacity-80 text-base"
         >
           Reset
+        </Button>
+        <Button onClick={onNewActivity} variant="frosted" showEnterHint className="w-full">
+          Try another
+        </Button>
+      </MobileCtaDock>
+
+      <div className="hidden md:flex absolute bottom-0 left-0 right-0 flex-col items-center gap-4 pb-24 px-6 w-full max-w-xl mx-auto">
+        <Button
+          onClick={onReset}
+          variant="secondary"
+          shortcutKey="R"
+          className="font-body hover:opacity-80 w-auto text-base"
+        >
+          Reset
+        </Button>
+        <Button onClick={onNewActivity} variant="frosted" showEnterHint className="w-auto">
+          Try another
         </Button>
       </div>
     </div>

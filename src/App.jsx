@@ -85,7 +85,7 @@ function App() {
 
   return (
     <div
-      className="motion-scene min-h-screen relative overflow-hidden"
+      className="motion-scene min-h-screen relative overflow-x-hidden"
       style={{ backgroundColor: isWarmVisualState ? WARM_BG : COLD_BG }}
     >
       <SceneBackground isWarm={isWarmVisualState} />

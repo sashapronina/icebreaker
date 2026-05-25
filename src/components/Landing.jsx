@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import Button from './Button'
+import MobileCtaDock from './MobileCtaDock'
 
 const Landing = ({ onGenerate, animationPhase }) => {
   const isContentExiting = animationPhase === 'fadeOut'
@@ -17,7 +18,7 @@ const Landing = ({ onGenerate, animationPhase }) => {
 
   return (
     <div
-      className="landing-shell min-h-screen relative z-10 px-4 sm:px-6"
+      className="landing-shell min-h-screen relative z-40 px-4 sm:px-6"
       style={{
         paddingTop: 'clamp(60px, 12vw, 88px)',
         opacity: isShellFading ? 0 : 1,
@@ -39,12 +40,18 @@ const Landing = ({ onGenerate, animationPhase }) => {
             onClick={onGenerate}
             variant="frosted"
             showEnterHint
-            className="w-full sm:w-auto"
+            className="hidden md:inline-flex w-full sm:w-auto"
           >
             Break the ice
           </Button>
         </div>
       </div>
+
+      <MobileCtaDock>
+        <Button onClick={onGenerate} variant="frosted" showEnterHint className="w-full">
+          Break the ice
+        </Button>
+      </MobileCtaDock>
     </div>
   )
 }
